@@ -1,0 +1,57 @@
+<header>
+    <a href="index.php" class="logo">
+        <img src="assets/images/logo-reason-svgrepo-com.svg" alt="logo">
+    </a>
+    <div class="contacts">
+        <div class="link"><a href="#"><img src="assets/images/facebook-round-svgrepo-com.svg" alt=""></a></div>
+        <div class="link"><a href="#"><img src="assets/images/github-round-svgrepo-com.svg" alt=""></a></div>
+    </div>
+    <div class="user">
+        <button id="show_popup_login" >Войти</button>
+        <a href="cart.php">
+            <img src="assets/images/cart-large-svgrepo-com.svg" alt="">
+        </a>
+        <button id="show_popup_search" class="icon">
+            <img src="assets/images/search-svgrepo-com.svg" alt="">
+        </button>
+    </div>
+    <div id="popup_search" class="">
+        <div class="inner_container">
+            <form action="">
+               <div>
+                    <label for="query">Поисковый запрос</label>
+                    <input id="query" type="text">
+               </div>
+                <button>Искать</button>
+            </form>
+            <div class="result">
+                <a href="good.php" class="good">
+                    <div class="image">
+                        <img src="https://picsum.photos/id/1/300/300" alt="">
+                    </div>
+                    <div class="text">
+                        <p class="name">Lorem ipsum dolor sit.</p>
+                    </div>
+                    <div class="price">
+                        <p>123 123</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="popup_login" class="">
+        <div class="inner_container_login">
+            <form action="">
+                <div>
+                    <label for="login">Логин</label>
+                    <input id="login" type="text">
+                    <label for="password">Пароль</label>
+                    <input id="password" type="text">
+                </div>
+                <button>Войти</button>
+            </form>
+        </div>
+    </div>
+
+</header>
