@@ -1,0 +1,60 @@
+main {
+    display: flex;
+    gap: 1rem;
+    padding-left: 300px;
+    margin-top: 2rem;
+    padding-right: 1rem;
+}
+nav {
+    width: 300px;
+    padding: 1rem;
+    position: fixed;
+    top: 125px;
+    left: 0;
+    box-sizing: border-box;
+}
+
+ul li {
+    margin-bottom: 1rem;
+}
+
+.goods{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 3rem 1rem;
+    margin-bottom: 2rem;
+}
+.goods .good{
+    display: flex;
+    flex-direction: column;
+}
+.goods .good:hover img{
+    transform: scale(1.1);
+}
+
+.goods .good .image {
+    max-width: 100%;
+    max-height: 300px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.goods .good .image img{
+    max-width: 100%;
+    max-height: 100%;
+    transition: all .5s;
+}
+.goods .good p {
+    text-align: center;
+}
+
+.goods .good p.price{
+    margin-bottom: 0;
+    color: #b54848;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.goods .good button {
+    align-self: center;
+}
