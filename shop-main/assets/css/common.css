@@ -157,7 +157,7 @@ ul{
     display: none;
 }
 
-#popup_search.active, #popup_login.active #popup_message.active {
+#popup_search.active, #popup_login.active, #popup_message.active {
     display: flex;
 }
 

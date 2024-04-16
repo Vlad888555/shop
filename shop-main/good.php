@@ -89,6 +89,7 @@
                     </div>
                 </div>
                 <div class="tab" data-id="2">
+                    <h2>Описания</h2>
                    <?= $good["Description"] ?>
                 </div>
                 <div class="tab" data-id="3">

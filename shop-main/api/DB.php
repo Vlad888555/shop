@@ -64,7 +64,7 @@ class DB{
         }
         $user_exists = $this->link->query("SELECT * FROM `users` WHERE `Login` = '$login'");
         if ($user_exists && !$user_exists->num_rows) {
-            $this->link->query("INSERT INTO `users` (`Name`, `Login`, `Password`, `Phone`) VALUES ('$name','$login', '$password', '$phone')");
+            $this->link->query("INSERT INTO `users` (`Name`, `Login`, `Password`, `Phone`) VALUES ('$name','$login', '$password', $phone)");
             return $this->link->errno === 0;
         }
         else{

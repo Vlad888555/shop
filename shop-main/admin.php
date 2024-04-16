@@ -5,6 +5,13 @@
     $admin = isset($_SESSION["admin"]);
     $db = new Admin_db();
     $orders = $db->get_orders();
+    $goods = $db->get_goods();
+    $goods = array_map(function ($good){
+        $good["Images"] = json_decode($good["Images"], true);
+        $good["Spesc"] = json_decode($good["Spesc"], true);
+        return $good;
+    }, $goods);
+    $reviews = $db->get_reviews();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/common.css">
     <link rel="stylesheet" href="assets/css/admin.css">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <title>Админ понель</title>
 </head>
 <body>
@@ -74,15 +82,83 @@
 
         <div class="tab" id="goods" data-id="2">
             <h2>Товары</h2>
+        <?php foreach ($goods as $good): ?>
+            <form class="good">
+                    <label>
+                        <span>Название</span>
+                        <input name="name" type="text" value="<?= $good["Name"] ?>">
+                    </label>
+                    <label>
+                        <span>Обложка</span>
+                        <img src="assets/goods/<?= $good["Cover"] ?>" alt="">
+                        <input type="file" name="cover">
+                    </label>
+                    <label>
+                        <span>Цена</span>
+                        <input name="price" type="number" value="<?= $good["Price"] ?>">
+                    </label>
+                   
+                    <label>
+                        <span>Краткая информация</span>
+                        <textarea name="info" rows="10"><?= $good["Info"] ?></textarea>
+                    </label>
+                    <div class="specs">
+                        <p>Технические характеристики</p>
+                    <?php foreach ($good["Spesc"] as $spec): ?>
+                        <div class="spec">
+                            <label>
+                                <span>Название</span>
+                                <input type="text" name="spec_name" value="<?= $spec["name"] ?>">
+                            </label>
+                            <label>
+                                <span>Значение</span>
+                                <input type="text" name="spec_value" value="<?= $spec["value"]?>">
+                            </label>
+                            <button class="remove_spec">Удалить</button>
+                        </div>
+                    <?php endforeach; ?>
+                        <button class="add_spec">Добавить</button>
+                    </div>
+                    <div class="summernote"><?= $good["Description"] ?></div>
+                    <div class="images">
+                    <?php foreach ($good["Images"] as $image): ?>
+                        <div class="image">
+                            <img src="assets/goods/<?= $image ?>" alt="">
+                            <input type="file" name="image">
+                            <button class="remove_image">Удалить</button>
+                        </div>
+                    <?php endforeach; ?>
+                    <?php for ($index = 0; $index < 5 - count($good["Images"]); $index++): ?>
+                        <div class="image">
+                            <input type="file" name="image">
+                        </div>
+                    <?php endfor; ?>        
+                </div>
+                <button class="save_good" data-id="<?= $good["Id"] ?>">Сохранить</button>
+            </form>    
+        <?php endforeach; ?>
+            
         </div>
 
         <div class="tab" id="reviews" data-id="3">
-            <h2>Отзывы</h2>
+                <h2>Отзывы</h2>
+            <?php foreach($reviews as $review): ?>
+                <div class="review">
+                    <p><strong>Пользователь: </strong> <?= $review["User_name"] ?>, <?= $review["Login"] ?></p>
+                    <p><strong>Товар: </strong> <?= $review["Good_name"] ?></p>
+                    <p><strong>Текст отзыва: </strong> <?= $review["Text"] ?></p>
+                    <p><strong>Оценка отзыва: </strong> <?= $review["Rate"] ?></p>
+                    <p><strong>Дата: </strong> <?= $review["Date"] ?></p>
+                    <button class="delete_review" data-id="<?= $review["Id"] ?>">Удалить</button>
+                </div>
+            <?php endforeach; ?>
         </div>
     </main>
 
 <?php endif; ?>
 
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="assets/js/admin.js"></script>
 </body>
 </html>

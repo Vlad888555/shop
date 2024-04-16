@@ -34,11 +34,31 @@ class Admin_db{
         return[];
     }
 
-    public function get_reviews(){
+
+    public function get_reviews() {
         $result = $this->link->query(
-            "SELECT * FROM `reviews`
-            LEFT JOIN `users` `u` on `u`.`Id` = `reviews`.`User_id`
-            LEFT JOIN `goods` `g` on "
+            "SELECT `r`.`Id`, `r`.`Text`, `r`.`Rate`, `r`.`Date`, `u`.`Login`, `u`.`Name` AS `User_name`, `g`.`Name` AS `Good_name` 
+            FROM `reviews` `r`
+            LEFT JOIN `users` `u` on `u`.`Id` = `r`.`User_id`
+            LEFT JOIN `goods` `g` on `g`.`Id` = `r`.`Good_id`
+            ORDER BY `r`.`Id` DESC"
         );
+        if ($result && $result->num_rows){
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+        return [];
+    }
+
+    public function delete_review($id){
+        $id = $this->link->real_escape_string($id);
+        $this->link->query("DELETE FROM `reviews` WHERE `Id` = $id");
+    }
+
+    public function get_goods(){
+        $result = $this->link->query("SELECT * FROM `goods`");
+        if ($result && $result->num_rows){
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+        return [];
     }
 }
