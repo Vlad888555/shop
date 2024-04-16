@@ -74,7 +74,7 @@ class DB{
     public function get_user_by_login($login) {
         $login = $this->link->real_escape_string($login);
         $user_exists = $this->link->query("SELECT * FROM `users` WHERE `Login` = '$login'");
-        if ($user_exists && !$user_exists->num_rows) {
+        if ($user_exists && $user_exists->num_rows) {
             return $user_exists->fetch_assoc();
         }
         return[];
@@ -83,7 +83,7 @@ class DB{
     public function get_user_by_id($id){
         $id = $this->link->real_escape_string($id);
         $user = $this->link->query("SELECT * FROM `users` WHERE `Id` = '$id'");
-        if ($user && !$user->num_rows) {
+        if ($user && $user->num_rows) {
             return $user->fetch_assoc();
         }
         return[];

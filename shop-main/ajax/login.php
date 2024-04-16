@@ -11,11 +11,11 @@
             $_SESSION["user_id"] = $user["Id"];
         }
         else{
-            $_SESSION["message"] = "Неверный логин или пароль";
+            $_SESSION["message"] = "Неверный логин или ПАРОЛЬ";
         }
     }
     else{
-        $_SESSION["message"] = "Неверный логин или пароль";
+        $_SESSION["message"] = "Неверный ЛОГИН или пароль";
     }
     
-    header("Location " . $_SERVER["HTTP_REFERER"]);
+    header("Location: " . $_SERVER["HTTP_REFERER"]);

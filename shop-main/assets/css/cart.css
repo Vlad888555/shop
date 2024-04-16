@@ -110,4 +110,7 @@ main{
         display: flex;
         flex-direction: column;
     }
+    .goods .good .image{
+        margin: auto;
+    }
 }

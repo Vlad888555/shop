@@ -69,7 +69,7 @@
         <div class="order">
         <?php if (!$user_id): ?>
             <h2>Для оформления заказа нужно авторизоваться</h2>
-        <?php elseif (!count(($good))): ?>
+        <?php elseif (!count(($goods))): ?>
             <h2>Для оформления заказа нужно авторизоваться</h2>
         <?php else: ?>
             <form action="ajax/proceed_order.php" autocomplete="off" method="post">

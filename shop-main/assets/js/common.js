@@ -16,6 +16,7 @@ popup_search_inner_container.addEventListener("click", (event) =>{
 })
 
 document.querySelector("#search").addEventListener("click", (event) =>{
+    event.defaultPrevented();
     let query = document.querySelector("#query").value;
     let data = new FormData();
     data.append("query", query);
